@@ -1,0 +1,9 @@
+[package]
+name = "term_system"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+crossterm = { workspace = true }
+ratatui = { workspace = true }
+image = { workspace = true }

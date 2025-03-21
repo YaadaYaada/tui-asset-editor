@@ -1,0 +1,10 @@
+[package]
+name = "arka_mechanic"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+arka_system = { workspace = true }
+serde = { workspace = true }
+ron = { workspace = true }
+bevy_reflect = { workspace = true }

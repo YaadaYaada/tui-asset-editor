@@ -1,0 +1,38 @@
+ItemRon (
+    next_id: 1,
+    defs: [
+        ItemDef (
+            id: 0,
+            name: "Sunblossom",
+            rules_text: "",
+            flavor_text: "A small yellow flower native to the mountains surrounding Arkania. It radiates a small amount of warm light.",
+            icon: "sprite/icon/sunblossom.png",
+            item_type: Miscellaneous,
+            item_rarity: Common,
+            sell_value: 5,
+            buy_value: 10,
+            max_stack: 50,
+            equipment_def: EquipmentDef (
+                slot: None,
+                armor: 0
+            )
+        ),
+
+        ItemDef (
+            id: 1,
+            name: "Witch Hat",
+            rules_text: "",
+            flavor_text: "A fashionable, wide brimmed hat.",
+            icon: "sprite/icon/witch_hat.png",
+            item_type: Equipment,
+            item_rarity: Uncommon,
+            sell_value: 100,
+            buy_value: 200,
+            max_stack: 1,
+            equipment_def: EquipmentDef (
+                slot: Head,
+                armor: 5
+            )
+        )
+    ]
+)

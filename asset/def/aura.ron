@@ -1,0 +1,45 @@
+AuraRon (
+    next_id: 4,
+    defs: [
+        AuraDef (
+            aura_type: None,
+            icon: "sprite/icon/cheese.png",
+            duration: 3600.0,
+            id: 0,
+            name: "Well Fed",
+            rules_text: "You feel full! Your fortitudeness is through the roof."
+        ),
+        AuraDef (
+            aura_type: Magic,
+            icon: "sprite/icon/lightning.png",
+            duration: 10.0,
+            id: 1,
+            name: "Shocked",
+            rules_text: "Dealing lightning damage periodically",
+        ),
+        AuraDef (
+            aura_type: Magic,
+            icon: "sprite/icon/unknown.png",
+            duration: 40.0,
+            id: 2,
+            name: "Haste",
+            rules_text: "You're feeling exceedingly speedy. Haste increased by 30%"
+        ),
+        AuraDef (
+            aura_type: Magic,
+            icon: "sprite/icon/unknown.png",
+            duration: 30.0,
+            id: 3,
+            name: "Ice Shield",
+            rules_text: "You are protected by a barrier of ice. The next attack dealt to you will slow the attacker's attack speed by 25%."
+        ),
+        AuraDef (
+            aura_type: Magic,
+            icon: "sprite/icon/unknown.png",
+            duration: 15.0,
+            id: 4,
+            name: "Smolder",
+            rules_text: "Taking fire damage every 3 seconds."
+        )
+    ]
+)

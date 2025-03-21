@@ -1,0 +1,21 @@
+AuraRon (
+    next_id: 2,
+    defs: [
+        AuraDef (
+            aura_type: None,
+            icon: "sprite/icon/cheese.png",
+            duration: 3600.0,
+            id: 0,
+            name: "Well Fed",
+            rules_text: "You feel full! Your fortitudeness is through the roof."
+        ),
+        AuraDef (
+            aura_type: Magic,
+            icon: "sprite/icon/lightning.png",
+            duration: 10.0,
+            id: 1,
+            name: "Shocked",
+            rules_text: "You've been shocked!"
+        )
+    ]
+)
