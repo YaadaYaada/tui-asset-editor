@@ -1,0 +1,7 @@
+A terminal based asset editor used to create and modify assets for video games written in Rust. In the context of this tool, "assets" refers to your standard game objects, like items, abilities and characters.
+
+[Click here to see a short demo](https://www.youtube.com/watch?v=EBW31fYh9h8)
+
+This tool is incomplete, buggy, and generally follows *worst* practices. Use this code at your own risk! A separate, more bespoke version of this tool is being developed alongside [Arkanet](https://www.youtube.com/@yaadayaada), which is a game I'm developing in my spare time. I don't intend to regularly update this repo, nor respond to pull requests, but might release a more complete, generic version in the future.
+
+This tool requires that you use a terminal emulator that allows you to set arbitrary foreground and background colors for each cell, which is not a feature present in most terminals. You are likely to have the most luck using [Alacritty](https://alacritty.org/) which is the terminal emulator I am developing this tool on.
