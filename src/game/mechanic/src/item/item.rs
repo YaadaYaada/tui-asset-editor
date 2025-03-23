@@ -1,7 +1,7 @@
 use std::{fmt, fs::File, io::Read, str::FromStr, sync::Arc};
 
-use arka_system::prelude::AssetLib;
 use bevy_reflect::Reflect;
+use game_system::prelude::AssetLib;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 

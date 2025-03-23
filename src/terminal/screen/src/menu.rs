@@ -1,4 +1,5 @@
 use std::io;
+use term_system::terminal_image::set_background_color;
 use term_system::theme::Theme;
 use term_system::tui;
 use term_system::window::{Screen, Window, WindowName};
@@ -27,27 +28,36 @@ impl<'a> Screen for Menu<'a> {
     fn new(window: Window) -> Self {
         Self {
             window,
-            menu_options: MenuOptionList::with_menu_options(vec![
-                &WindowName::Database,
-                &WindowName::Arkachat,
-                &WindowName::Options,
-                &WindowName::Demo,
-            ]),
+            // NOTE: You can add more windows here to add extra options
+            menu_options: MenuOptionList::with_menu_options(vec![&WindowName::Database]),
         }
     }
 
     fn run(&mut self, terminal: &mut tui::Tui) -> io::Result<WindowName> {
         self.window.quit = false;
         self.window.change = false;
+        self.window.draw_background = true;
 
         if self.menu_options.state.selected().is_none() {
             self.menu_options.state.select(Some(0));
         }
 
         while !self.window.quit && !self.window.change {
-            terminal.draw(|frame| frame.render_widget(&mut *self, frame.area()))?;
-            self.handle_events()?;
+            let _ = terminal.draw(|frame| {
+                if self.window.draw_background {
+                    set_background_color(
+                        frame.area(),
+                        frame.buffer_mut(),
+                        self.window.theme.black_dark,
+                    );
+                } else {
+                    self.window.draw_background = false
+                }
+                frame.render_widget(&mut *self, frame.area());
+            });
+            let _ = self.handle_events();
         }
+
         if self.window.change {
             return Ok(*self.menu_options.menu_options
                 [self.menu_options.state.selected().unwrap()]
@@ -86,8 +96,8 @@ impl<'a> Widget for &mut Menu<'a> {
             .constraints(vec![
                 Constraint::Length(half_height - 1),
                 // Options box height
-                Constraint::Length(6),
-                Constraint::Length(half_height - 5),
+                Constraint::Length(3),
+                Constraint::Length(half_height - 2),
             ])
             .split(area);
 
@@ -118,12 +128,12 @@ impl<'a> Widget for &mut Menu<'a> {
 
 fn render_title(area: Rect, buf: &mut Buffer, window: Window) {
     let title = "
-   █████╗ ██████╗ ██╗  ██╗ █████╗ ███╗   ██╗███████╗████████╗
-  ██╔══██╗██╔══██╗██║ ██╔╝██╔══██╗████╗  ██║██╔════╝╚══██╔══╝
-  ███████║██████╔╝█████╔╝ ███████║██╔██╗ ██║█████╗     ██║
-  ██╔══██║██╔══██╗██╔═██╗ ██╔══██║██║╚██╗██║██╔══╝     ██║
-  ██║  ██║██║  ██║██║  ██╗██║  ██║██║ ╚████║███████╗   ██║
-  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
+       ███████╗██████╗ ██╗████████╗ ██████╗ ██████╗
+       ██╔════╝██╔══██╗██║╚══██╔══╝██╔═══██╗██╔══██╗
+       █████╗  ██║  ██║██║   ██║   ██║   ██║██████╔╝
+       ██╔══╝  ██║  ██║██║   ██║   ██║   ██║██╔══██╗
+       ███████╗██████╔╝██║   ██║   ╚██████╔╝██║  ██║
+       ╚══════╝╚═════╝ ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
 █████████████████████████████████████████████████████████████╗
 ╚════════════════════════════════════════════════════════════╝
 ";
@@ -140,6 +150,7 @@ fn render_title(area: Rect, buf: &mut Buffer, window: Window) {
         .constraints(constraints)
         .split(area);
 
+    // Render the title using a f-a-n-c-y gradient
     for i in 0..title_lines.len() {
         Paragraph::new(title_lines[i])
             .block(Block::new())

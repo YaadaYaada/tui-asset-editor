@@ -1,7 +1,7 @@
-use arka_mechanic::item::equipment::EquipmentSlot;
-use arka_mechanic::prelude::*;
-use arka_system::asset::asset_lib::AssetLib;
-use arka_system::prelude::AssetType;
+use game_mechanic::item::equipment::EquipmentSlot;
+use game_mechanic::prelude::*;
+use game_system::asset::asset_lib::AssetLib;
+use game_system::prelude::AssetType;
 use image::DynamicImage;
 use ratatui::widgets::{
     Block, Borders, List, ListDirection, ListItem, ListState, Paragraph, Scrollbar,
@@ -12,7 +12,7 @@ use std::cmp::min;
 use std::fmt::Display;
 use std::io;
 use std::rc::Rc;
-use term_system::terminal_image::{load_image, UNKNOWN_IMAGE_PATH};
+use term_system::terminal_image::{load_image, set_background_color, UNKNOWN_IMAGE_PATH};
 use term_system::window::{Screen, Window, WindowName};
 use term_system::{terminal_image, tui};
 
@@ -62,6 +62,8 @@ enum DatabaseFrame {
 
 impl Screen for Database {
     fn new(window: Window) -> Self {
+        // TODO: Here and throughout, replace individually defined asset libs with
+        // a generic type that makes
         let aura_lib = AuraLib::new("asset/def/aura.ron");
         let item_lib = ItemLib::new("asset/def/item.ron");
         let mut assets: Vec<Asset> = vec![];
@@ -99,7 +101,6 @@ impl Screen for Database {
             details_character_index: 0,
             details_index: 0,
             details_entry_line_counts: vec![],
-
             editing_details: false,
             current_asset,
             current_asset_fields: vec![],
@@ -110,6 +111,7 @@ impl Screen for Database {
     fn run(&mut self, terminal: &mut tui::Tui) -> io::Result<WindowName> {
         self.window.quit = false;
         self.window.change = false;
+        self.window.draw_background = true;
 
         if self.visible_assets.state.selected().is_none() {
             self.visible_assets.state.select(Some(0));
@@ -117,6 +119,16 @@ impl Screen for Database {
 
         while !self.window.quit {
             let _ = terminal.draw(|frame| {
+                if self.window.draw_background {
+                    set_background_color(
+                        frame.area(),
+                        frame.buffer_mut(),
+                        self.window.theme.black_dark,
+                    );
+                } else {
+                    self.window.draw_background = false
+                }
+
                 frame.render_widget(&mut *self, frame.area());
                 frame.set_cursor_position(self.cursor_position);
             });
@@ -235,7 +247,6 @@ impl Screen for Database {
                                     );
                                     self.item_lib.update_def(item.into());
                                 }
-                                AssetType::Character => todo!(),
                             };
                             self.details_character_index = 0;
                             self.details_input.clear();
@@ -270,7 +281,6 @@ impl Screen for Database {
                                     self.item_lib.id(self.current_asset.id),
                                     &self.current_asset_fields[self.details_index],
                                 ),
-                                _ => "".to_string(),
                             };
                             (self.current_asset_fields[self.details_index].len()) as u16;
                             self.details_character_index = self.details_input.len();
@@ -351,7 +361,6 @@ impl Database {
                 self.current_asset_fields = get_def_paths(self.item_lib.id(asset.id));
                 self.add_item_details(&asset, true)
             }
-            _ => vec![],
         };
 
         let p = self.build_details_paragraph(full_details);
@@ -397,7 +406,6 @@ impl Database {
                 self.current_asset_fields = get_def_paths(self.item_lib.id(asset.id));
                 self.add_item_details(&asset, false)
             }
-            _ => vec![],
         };
 
         let line_counts =
@@ -495,7 +503,6 @@ impl Database {
         let path = match asset.asset_type {
             AssetType::Aura => self.aura_lib.id(asset.id).icon.clone(),
             AssetType::Item => self.item_lib.id(asset.id).icon.clone(),
-            _ => "".to_string(),
         };
         load_image(&format!("asset/{}", &path))
     }

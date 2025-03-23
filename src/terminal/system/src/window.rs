@@ -7,16 +7,8 @@ use ratatui::widgets::block::*;
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 pub enum WindowName {
     None,
-
     Menu,
-
     Database,
-    Arkachat,
-    Options,
-    Demo,
-
-    DemoColor,
-    DemoImage,
 }
 
 #[derive(Copy, Clone)]
@@ -25,6 +17,7 @@ pub struct Window {
     pub change: bool,
     pub theme: Theme,
     pub border_type: BorderType,
+    pub draw_background: bool,
 }
 
 pub trait Screen {
@@ -41,6 +34,7 @@ impl Default for Window {
             change: false,
             theme: Theme::AMBER,
             border_type: BorderType::Rounded,
+            draw_background: true,
         }
     }
 }

@@ -3,34 +3,30 @@ ItemRon (
     defs: [
         ItemDef (
             id: 0,
-            name: "Sunblossom",
+            name: "Red Potion",
             rules_text: "",
-            flavor_text: "A small yellow flower native to the mountains surrounding Arkania. It radiates a small amount of warm light.",
-            icon: "sprite/icon/sunblossom.png",
+            flavor_text: "A vibrant red potion. Probably safe to drink.",
+            icon: "sprite/icon/red_potion.png",
             item_type: Miscellaneous,
             item_rarity: Common,
             sell_value: 5,
             buy_value: 10,
             max_stack: 50,
-            equipment_def: EquipmentDef (
-                slot: None,
-                armor: 0
-            )
         ),
 
         ItemDef (
             id: 1,
-            name: "Witch Hat",
+            name: "Shoe",
             rules_text: "",
-            flavor_text: "A fashionable, wide brimmed hat.",
-            icon: "sprite/icon/witch_hat.png",
+            flavor_text: "A super rad shoe. Unfortunately the second one is nowhere to be found.",
+            icon: "sprite/icon/shoe.png",
             item_type: Equipment,
             item_rarity: Uncommon,
             sell_value: 100,
             buy_value: 200,
             max_stack: 1,
             equipment_def: EquipmentDef (
-                slot: Head,
+                slot: Feet,
                 armor: 5
             )
         )

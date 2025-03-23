@@ -29,8 +29,6 @@ pub struct EquipmentDef {
 impl fmt::Display for EquipmentSlot {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
-            EquipmentSlot::MainHand => write!(f, "MainHand"),
-            EquipmentSlot::OffHand => write!(f, "OffHand"),
             _ => write!(f, "{:?}", self),
         }
     }

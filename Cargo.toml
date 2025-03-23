@@ -1,5 +1,5 @@
 [package]
-name = "arkanet"
+name = "asset-editor"
 version = "0.1.0"
 edition = "2021"
 
@@ -13,15 +13,15 @@ opt-level = 3
 opt-level = 1
 
 [workspace]
-members = ["src/arkanet/mechanic"]
+members = ["src/game/mechanic"]
 
 [[bin]]
 name = "terminal"
 path = "src/terminal/main.rs"
 
 [workspace.dependencies]
-arka_mechanic = { path = "src/arkanet/mechanic/" }
-arka_system = { path = "src/arkanet/system/" }
+game_mechanic = { path = "src/game/mechanic/" }
+game_system = { path = "src/game/system/" }
 term_screen = { path = "src/terminal/screen" }
 term_system = { path = "src/terminal/system" }
 bevy_reflect = { version = "0.15.3" }
@@ -32,8 +32,8 @@ serde = { version = "1", features = ["derive"] }
 ron = "0.8.1"
 
 [dependencies]
-arka_mechanic = { workspace = true }
-arka_system = { workspace = true }
+game_mechanic = { workspace = true }
+game_system = { workspace = true }
 term_screen = { workspace = true }
 term_system = { workspace = true }
 bevy_reflect = { workspace = true }

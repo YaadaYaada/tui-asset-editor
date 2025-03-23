@@ -4,7 +4,6 @@ use std::fmt;
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Reflect)]
 pub enum AssetType {
     Aura,
-    Character,
     Item,
 }
 
@@ -15,5 +14,5 @@ impl fmt::Display for AssetType {
 }
 
 pub trait AssetLib<T> {
-    fn new(ron_date: &str) -> Self;
+    fn new(path: &str) -> Self;
 }
