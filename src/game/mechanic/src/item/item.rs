@@ -1,4 +1,10 @@
-use std::{fmt, fs::File, io::Read, str::FromStr, sync::Arc};
+use std::{
+    fmt,
+    fs::File,
+    io::{Read, Write},
+    str::FromStr,
+    sync::Arc,
+};
 
 use bevy_reflect::Reflect;
 use game_system::prelude::AssetLib;
@@ -45,6 +51,7 @@ struct ItemRon {
 
 #[derive(Debug, Default)]
 pub struct ItemLib {
+    next_id: u32,
     name_map: HashMap<String, usize>,
     id_map: HashMap<u32, usize>,
     pub defs: Vec<Arc<ItemDef>>,
@@ -117,10 +124,29 @@ impl AssetLib<ItemLib> for ItemLib {
             defs.push(Arc::new(def));
         }
         ItemLib {
+            next_id: item_ron.next_id,
             name_map,
             id_map,
             defs,
         }
+    }
+
+    fn save(&self, path: &str) {
+        let mut defs = vec![];
+        for def in self.defs.clone() {
+            defs.push((*def).clone());
+        }
+        let item_ron = ItemRon {
+            next_id: self.next_id,
+            defs,
+        };
+
+        let mut item_ron_file = File::open(path).unwrap();
+        let _ = item_ron_file.write(
+            ron::ser::to_string_pretty(&item_ron, ron::ser::PrettyConfig::default())
+                .unwrap()
+                .as_bytes(),
+        );
     }
 }
 
@@ -131,7 +157,7 @@ impl ItemLib {
 
     pub fn update_def(&mut self, def: Arc<ItemDef>) {
         let id = &def.id.clone();
-        self.defs[self.id_map[&id]] = def
+        self.defs[self.id_map[id]] = def
     }
 
     pub fn name(&self, name: String) -> &Arc<ItemDef> {

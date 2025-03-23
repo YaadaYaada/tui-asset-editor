@@ -64,7 +64,7 @@ pub fn render_image_with_border(
 
     // Draw the top border
     for x in pos_x..end_x {
-        buf.cell_mut(Position { x: x, y: pos_y })
+        buf.cell_mut(Position { x, y: pos_y })
             .unwrap()
             .set_char(horizontal_border)
             .set_fg(theme.white)
@@ -73,12 +73,12 @@ pub fn render_image_with_border(
 
     // Draw the vertical borders
     for y in pos_y..end_y {
-        buf.cell_mut(Position { x: pos_x, y: y })
+        buf.cell_mut(Position { x: pos_x, y })
             .unwrap()
             .set_char(vertical_border)
             .set_fg(theme.white)
             .set_bg(theme.black_dark);
-        buf.cell_mut(Position { x: end_x, y: y })
+        buf.cell_mut(Position { x: end_x, y })
             .unwrap()
             .set_char(vertical_border)
             .set_fg(theme.white)
@@ -87,7 +87,7 @@ pub fn render_image_with_border(
 
     // Draw the bottom border
     for x in pos_x..end_x {
-        buf.cell_mut(Position { x: x, y: end_y })
+        buf.cell_mut(Position { x, y: end_y })
             .unwrap()
             .set_char(horizontal_border)
             .set_fg(theme.white)

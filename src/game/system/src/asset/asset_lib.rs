@@ -15,4 +15,5 @@ impl fmt::Display for AssetType {
 
 pub trait AssetLib<T> {
     fn new(path: &str) -> Self;
+    fn save(&self, path: &str);
 }

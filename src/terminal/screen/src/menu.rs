@@ -24,7 +24,7 @@ pub struct Menu<'a> {
     menu_options: MenuOptionList<'a>,
 }
 
-impl<'a> Screen for Menu<'a> {
+impl Screen for Menu<'_> {
     fn new(window: Window) -> Self {
         Self {
             window,
@@ -87,7 +87,7 @@ impl<'a> Screen for Menu<'a> {
     }
 }
 
-impl<'a> Widget for &mut Menu<'a> {
+impl Widget for &mut Menu<'_> {
     fn render(self, area: Rect, buf: &mut Buffer) {
         let half_width = area.width / 2;
         let half_height = area.height / 2;

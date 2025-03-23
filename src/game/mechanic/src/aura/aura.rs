@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fmt;
 use std::fs::File;
-use std::io::Read;
+use std::io::{Read, Write};
 use std::str::FromStr;
 use std::sync::Arc;
 
@@ -25,6 +25,7 @@ struct AuraRon {
 
 #[derive(Debug, Default)]
 pub struct AuraLib {
+    next_id: u32,
     name_map: HashMap<String, usize>,
     id_map: HashMap<u32, usize>,
     pub defs: Vec<Arc<AuraDef>>,
@@ -81,10 +82,29 @@ impl AssetLib<AuraLib> for AuraLib {
             defs.push(Arc::new(def));
         }
         AuraLib {
+            next_id: aura_ron.next_id,
             name_map,
             id_map,
             defs,
         }
+    }
+
+    fn save(&self, path: &str) {
+        let mut defs = vec![];
+        for def in self.defs.clone() {
+            defs.push((*def).clone());
+        }
+        let aura_ron = AuraRon {
+            next_id: self.next_id,
+            defs,
+        };
+
+        let mut aura_def_file = File::open(path).unwrap();
+        let _ = aura_def_file.write(
+            ron::ser::to_string_pretty(&aura_ron, ron::ser::PrettyConfig::default())
+                .unwrap()
+                .as_bytes(),
+        );
     }
 }
 
@@ -99,7 +119,7 @@ impl AuraLib {
 
     pub fn update_def(&mut self, def: Arc<AuraDef>) {
         let id = &def.id.clone();
-        self.defs[self.id_map[&id]] = def
+        self.defs[self.id_map[id]] = def
     }
 }
 
