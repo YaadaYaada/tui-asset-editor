@@ -4,7 +4,7 @@ use ron;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fmt;
-use std::fs::File;
+use std::fs::{File, OpenOptions};
 use std::io::{Read, Write};
 use std::str::FromStr;
 use std::sync::Arc;
@@ -99,7 +99,12 @@ impl AssetLib<AuraLib> for AuraLib {
             defs,
         };
 
-        let mut aura_def_file = File::open(path).unwrap();
+        let mut aura_def_file = OpenOptions::new()
+            .truncate(true)
+            .write(true)
+            .create(true)
+            .open(path)
+            .unwrap();
         let _ = aura_def_file.write(
             ron::ser::to_string_pretty(&aura_ron, ron::ser::PrettyConfig::default())
                 .unwrap()

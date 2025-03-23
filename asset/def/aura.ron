@@ -1,45 +1,45 @@
-AuraRon (
+(
     next_id: 4,
     defs: [
-        AuraDef (
-            aura_type: None,
-            icon: "sprite/icon/cheese.png",
-            duration: 3600.0,
+        (
             id: 0,
             name: "Well Fed",
-            rules_text: "You feel full! Your fortitudeness is through the roof."
+            icon: "sprite/icon/cheese.png",
+            duration: 3600.0,
+            aura_type: None,
+            rules_text: "You feel full! Your fortitudeness is through the roof.",
         ),
-        AuraDef (
-            aura_type: Magic,
-            icon: "sprite/icon/lightning.png",
-            duration: 10.0,
+        (
             id: 1,
             name: "Shocked",
+            icon: "sprite/icon/lightning.png",
+            duration: 10.0,
+            aura_type: Magic,
             rules_text: "Dealing lightning damage periodically",
         ),
-        AuraDef (
-            aura_type: Magic,
-            icon: "sprite/icon/unknown.png",
-            duration: 40.0,
+        (
             id: 2,
             name: "Haste",
-            rules_text: "You're feeling exceedingly speedy. Haste increased by 30%"
-        ),
-        AuraDef (
+            icon: "sprite/icon/shoe.png",
+            duration: 4000.0,
             aura_type: Magic,
-            icon: "sprite/icon/unknown.png",
-            duration: 30.0,
+            rules_text: "You\'re feeling exceedingly speedy. Haste increased by 30%",
+        ),
+        (
             id: 3,
             name: "Ice Shield",
-            rules_text: "You are protected by a barrier of ice. The next attack dealt to you will slow the attacker's attack speed by 25%."
-        ),
-        AuraDef (
-            aura_type: Magic,
             icon: "sprite/icon/unknown.png",
-            duration: 15.0,
+            duration: 30.0,
+            aura_type: Magic,
+            rules_text: "You are protected by a barrier of ice. The next attack dealt to you will slow the attacker\'s attack speed by 25%.",
+        ),
+        (
             id: 4,
             name: "Smolder",
-            rules_text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta ac sapien eget pulvinar. Sed non massa ultrices, volutpat arcu ac, pharetra justo. Donec aliquet auctor gravida. Aliquam varius lacus at finibus dictum. Duis placerat hendrerit lobortis. Duis in neque lacus. Etiam consectetur semper leo eget porttitor. Ut pulvinar enim vel mattis cursus. Vivamus nec orci ac libero pulvinar hendrerit ac eget dui. In facilisis lorem vel pulvinar mollis. Integer sit amet fermentum eros.Curabitur tincidunt hendrerit faucibus. Nam vel mauris sodales, auctor risus vel, ultrices ligula. Pellentesque non velit vitae dolor lacinia fermentum sed non quam. Cras laoreet, mauris vitae dignissim scelerisque, magna velit dignissim mauris, a ultrices odio lorem a leo. Aliquam sodales lacus vel lacus imperdiet rhoncus id at ante. Nam dolor mauris, viverra vel lorem nec, sodales semper metus. Fusce nisi augue, placerat a dolor sit amet, mattis maximus nisl. Sed dignissim sem ac nisl maximus, non vestibulum nulla imperdiet. In elementum lacinia nunc, a sollicitudin enim ornare vitae. Morbi eget nisl efficitur, dictum mi ultricies, eleifend eros. Aenean at vestibulum mauris, at commodo leo.Nam tempus elementum purus, id vulputate risus tempus ac. Pellentesque mollis et urna ac congue. Integer sit amet turpis orci. Suspendisse purus justo, maximus id pellentesque porttitor, suscipit tempus mi. Vivamus non aliquet leo. Duis velit eros, tempor sed urna eget, ultrices mollis eros. Mauris commodo finibus neque eget porta. Donec lobortis sagittis felis, eu pretium leo sodales dictum. Morbi quis sodales elit.Quisque ultricies accumsan ultricies. Ut ultrices odio a massa lacinia sollicitudin. Aliquam eget feugiat erat, ac vestibulum neque. Suspendisse sed elit placerat, viverra nulla nec, lacinia neque. Mauris non ante sapien. Nullam dictum dictum dolor et convallis. Aliquam erat volutpat. Nulla tristique accumsan eros nec maximus. Vestibulum ac sapien finibus enim porta congue. Vestibulum dictum dui non euismod finibus. Sed at turpis sit amet mi scelerisque lobortis a et velit. Curabitur ultricies, leo in luctus porta, tellus turpis congue erat, eget pellentesque dolor quam id odio. Fusce venenatis dignissim dolor.Duis nec risus iaculis, consequat neque vitae, pharetra neque. Duis aliquam posuere sem, eu congue sem tristique id. Vivamus feugiat est nunc, et hendrerit sem tincidunt ac. Phasellus hendrerit tempor urna at ultrices. In eget commodo enim. Integer hendrerit quam at nisl porttitor luctus. Integer augue mi, vehicula ac odio et, pulvinar pretium odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta ac sapien eget pulvinar. Sed non massa ultrices, volutpat arcu ac, pharetra justo. Donec aliquet auctor gravida. Aliquam varius lacus at finibus dictum. Duis placerat hendrerit lobortis. Duis in neque lacus. Etiam consectetur semper leo eget porttitor. Ut pulvinar enim vel mattis cursus. Vivamus nec orci ac libero pulvinar hendrerit ac eget dui. In facilisis lorem vel pulvinar mollis. Integer sit amet fermentum eros.Curabitur tincidunt hendrerit faucibus. Nam vel mauris sodales, auctor risus vel, ultrices ligula. Pellentesque non velit vitae dolor lacinia fermentum sed non quam. Cras laoreet, mauris vitae dignissim scelerisque, magna velit dignissim mauris, a ultrices odio lorem a leo. Aliquam sodales lacus vel lacus imperdiet rhoncus id at ante. Nam dolor mauris, viverra vel lorem nec, sodales semper metus. Fusce nisi augue, placerat a dolor sit amet, mattis maximus nisl. Sed dignissim sem ac nisl maximus, non vestibulum nulla imperdiet. In elementum lacinia nunc, a sollicitudin enim ornare vitae. Morbi eget nisl efficitur, dictum mi ultricies, eleifend eros. Aenean at vestibulum mauris, at commodo leo.Nam tempus elementum purus, id vulputate risus tempus ac. Pellentesque mollis et urna ac congue. Integer sit amet turpis orci. Suspendisse purus justo, maximus id pellentesque porttitor, suscipit tempus mi. Vivamus non aliquet leo. Duis velit eros, tempor sed urna eget, ultrices mollis eros. Mauris commodo finibus neque eget porta. Donec lobortis sagittis felis, eu pretium leo sodales dictum. Morbi quis sodales elit.Quisque ultricies accumsan ultricies. Ut ultrices odio a massa lacinia sollicitudin. Aliquam eget feugiat erat, ac vestibulum neque. Suspendisse sed elit placerat, viverra nulla nec, lacinia neque. Mauris non ante sapien. Nullam dictum dictum dolor et convallis. Aliquam erat volutpat. Nulla tristique accumsan eros nec maximus. Vestibulum ac sapien finibus enim porta congue. Vestibulum dictum dui non euismod finibus. Sed at turpis sit amet mi scelerisque lobortis a et velit. Curabitur ultricies, leo in luctus porta, tellus turpis congue erat, eget pellentesque dolor quam id odio. Fusce venenatis dignissim dolor.Duis nec risus iaculis, consequat neque vitae, pharetra neque. Duis aliquam posuere sem, eu congue sem tristique id. Vivamus feugiat est nunc, et hendrerit sem tincidunt ac. Phasellus hendrerit tempor urna at ultrices. In eget commodo enim. Integer hendrerit quam at nisl porttitor luctus. Integer augue mi, vehicula ac odio et, pulvinar pretium odio. "
-        )
-    ]
+            icon: "sprite/icon/unknown.png",
+            duration: 15.0,
+            aura_type: Magic,
+            rules_text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta ac sapien eget pulvinar.",
+        ),
+    ],
 )

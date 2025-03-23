@@ -133,7 +133,6 @@ impl Screen for Database {
         if self.visible_assets.state.selected().is_none() {
             self.visible_assets.state.select(Some(0));
         }
-
         while !self.window.quit {
             let _ = terminal.draw(|frame| {
                 if self.window.draw_background {
@@ -151,7 +150,6 @@ impl Screen for Database {
             });
             let _ = self.handle_events();
         }
-
         self.aura_lib.save("asset/def/aura.ron");
         self.item_lib.save("asset/def/item.ron");
         Ok(WindowName::Menu)
@@ -366,7 +364,7 @@ impl Database {
             list_items.push(self.assets[*index].to_list_item())
         }
 
-        let list = List::new(list_items)
+        let asset_list = List::new(list_items)
             .block(
                 Block::default()
                     .title("Assets")
@@ -380,26 +378,28 @@ impl Database {
             .highlight_style(Style::default().fg(self.window.theme.red))
             .direction(ListDirection::TopToBottom);
 
-        let scroll = list.len().saturating_sub((area.height - 1) as usize);
-        StatefulWidget::render(&list, area, buf, &mut self.visible_assets.state);
+        StatefulWidget::render(&asset_list, area, buf, &mut self.visible_assets.state);
 
-        let scrollbar = Scrollbar::new(ScrollbarOrientation::VerticalRight)
-            .track_symbol(Some(self.window.border_type.to_border_set().vertical_left))
-            .begin_symbol(Some("▲"))
-            .end_symbol(Some("▼"));
+        if asset_list.len() > 0 {
+            let scroll = asset_list.len().saturating_sub((area.height - 1) as usize);
+            let scrollbar = Scrollbar::new(ScrollbarOrientation::VerticalRight)
+                .track_symbol(Some(self.window.border_type.to_border_set().vertical_left))
+                .begin_symbol(Some("▲"))
+                .end_symbol(Some("▼"));
 
-        let mut scrollbar_state =
-            ScrollbarState::new(scroll).position(self.visible_assets.state.selected().unwrap());
+            let mut scrollbar_state =
+                ScrollbarState::new(scroll).position(self.visible_assets.state.selected().unwrap());
 
-        StatefulWidget::render(
-            scrollbar,
-            area.inner(Margin {
-                vertical: 1,
-                horizontal: 0,
-            }),
-            buf,
-            &mut scrollbar_state,
-        );
+            StatefulWidget::render(
+                scrollbar,
+                area.inner(Margin {
+                    vertical: 1,
+                    horizontal: 0,
+                }),
+                buf,
+                &mut scrollbar_state,
+            );
+        }
     }
 
     fn render_details(&mut self, area: Rect, buf: &mut Buffer, render_cursor: bool) {

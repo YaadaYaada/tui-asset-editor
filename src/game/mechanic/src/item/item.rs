@@ -1,6 +1,6 @@
 use std::{
     fmt,
-    fs::File,
+    fs::{File, OpenOptions},
     io::{Read, Write},
     str::FromStr,
     sync::Arc,
@@ -141,8 +141,13 @@ impl AssetLib<ItemLib> for ItemLib {
             defs,
         };
 
-        let mut item_ron_file = File::open(path).unwrap();
-        let _ = item_ron_file.write(
+        let mut item_def_file = OpenOptions::new()
+            .truncate(true)
+            .write(true)
+            .create(true)
+            .open(path)
+            .unwrap();
+        let _ = item_def_file.write(
             ron::ser::to_string_pretty(&item_ron, ron::ser::PrettyConfig::default())
                 .unwrap()
                 .as_bytes(),

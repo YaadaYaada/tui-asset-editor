@@ -1,7 +1,7 @@
-ItemRon (
+(
     next_id: 1,
     defs: [
-        ItemDef (
+        (
             id: 0,
             name: "Red Potion",
             rules_text: "",
@@ -9,12 +9,15 @@ ItemRon (
             icon: "sprite/icon/red_potion.png",
             item_type: Miscellaneous,
             item_rarity: Common,
-            sell_value: 5,
+            max_stack: 60,
             buy_value: 10,
-            max_stack: 50,
+            sell_value: 5,
+            equipment_def: (
+                slot: None,
+                armor: 0,
+            ),
         ),
-
-        ItemDef (
+        (
             id: 1,
             name: "Shoe",
             rules_text: "",
@@ -22,13 +25,13 @@ ItemRon (
             icon: "sprite/icon/shoe.png",
             item_type: Equipment,
             item_rarity: Uncommon,
-            sell_value: 100,
-            buy_value: 200,
             max_stack: 1,
-            equipment_def: EquipmentDef (
+            buy_value: 200,
+            sell_value: 100,
+            equipment_def: (
                 slot: Feet,
-                armor: 5
-            )
-        )
-    ]
+                armor: 5,
+            ),
+        ),
+    ],
 )
