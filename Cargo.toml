@@ -2,6 +2,7 @@
 name = "asset-editor"
 version = "0.1.0"
 edition = "2021"
+default-run = "terminal"
 
 # Enables maximum optimization for dependencies.
 # Slower clean build time, but will run much faster.
